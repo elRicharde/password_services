@@ -10,27 +10,27 @@ from os import system
 # https://stackoverflow.com/questions/62514742/how-to-store-hashed-passwords-on-sqlite3-database
 
 
-class Password_service:
+class PasswordService:
 
     def __init__(self):
-        pass # nothing to do so far
+        pass  # nothing to do so far
 
-    def hash_password(self, password):
+    def __hash_password(self, password):
 
         # uuid is used to generate a random number
         salt = uuid.uuid4().hex
         return hashlib.sha256(salt.encode() + password.encode("utf-8")).hexdigest() + ':' + salt
 
-    def check_password(self, hashed_password, user_password):
+    def __check_password(self, hashed_password, user_password):
         password, salt = hashed_password.split(':')
-        return password == hashlib.sha256(salt.encode() + user_password.encode("utf-8")).hexdigest()        # True / False
+        return password == hashlib.sha256(salt.encode() + user_password.encode("utf-8")).hexdigest()      # True / False
 
     def get_new_password(self):
         first = "first"
         second = "kontrolle"
         msg = "nix"
         
-        print("Psswort eingeben - Achtung, aus Sicherheitsgründen gibt es kein Cursor")
+        print("Passwort eingeben - Achtung, aus Sicherheitsgründen gibt es kein Cursor")
                 
         while first != second:
             system('cls')       # clear screen
@@ -48,7 +48,7 @@ class Password_service:
         try:
             print("Anmelden abbrechen mit 'Ctrl + C'")
             print("aus Sicherheitsgründen gibt es kein Cursor")
-            while self.check_password(hashed_password, getpass.getpass(prompt="Password: ", stream=None) ) == False:
+            while self.__check_password(hashed_password, getpass.getpass(prompt="Password: ", stream=None)) is False:
                 wait = wait * 2
                 for sec in range(wait, 0, -1):
                     system('cls')       # clear screen
@@ -59,7 +59,6 @@ class Password_service:
                 print("aus Sicherheitsgründen gibt es kein Cursor")
                     
         except KeyboardInterrupt:
-            return False    # nicht Authorisiert
+            return False    # nicht autorisiert
 
-        return True # Authorisiert
-
+        return True  # autorisiert

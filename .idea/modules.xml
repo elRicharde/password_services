@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Class_Password_Service.iml" filepath="$PROJECT_DIR$/.idea/Class_Password_Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/password_services.iml" filepath="$PROJECT_DIR$/.idea/password_services.iml" />
     </modules>
   </component>
 </project>
